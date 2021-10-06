@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0,shrink-to-fit=no">
+  <title>Blood Donation</title>
+
+
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+    integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+    crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+    integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+    crossorigin="anonymous"></script>
+
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+    integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  <!--  CSS properties -->
+  <style>
+    body {
+      background-color: rgb(182, 214, 224);
+    }
+
+    .heading {
+      align-items: flex-end;
+      width: 100%;
+
+
+
+      border-radius: 15px;
+    }
+
+    .content {
+      width: 100%;
+      padding-bottom: 40%;
+      margin-top: 0.1%;
+
+      border-radius: 15px;
+
+    }
+
+    .welcome {
+      align-items: center;
+    }
+
+    .wel-note {
+      align-items: center;
+      padding-top: 0.3%;
+    }
+
+
+    .login-btn {
+      align-content: center;
+      padding-bottom: 5%;
+    }
+
+    .sinup-btn {
+      padding-top: 3%;
+    }
+
+    .search {
+      width: 100%;
+      padding-top: 2%;
+      padding-left: 4%;
+
+    }
+
+    .search-info {
+      padding-top: 1%;
+      padding-left: 11%;
+    }
+
+    .left {
+      float: left;
+    }
+
+    .right {
+      float: right;
+    }
+
+
+    .login-f {
+      margin-top: 1.5%;
+    }
+
+    .loader {
+      display: none;
+      padding-bottom: 4px;
+    }
+
+
+    /* // Small devices (landscape phones, 576px and up) */
+    @media (min-width: 280px) {
+      .heading {
+        align-items: flex-end;
+
+        height: 93px;
+
+
+      }
+
+      .login-form {
+        float: center;
+      }
+
+
+
+
+    }
+
+    @media (min-width: 320px) {
+      .heading {
+        align-items: flex-end;
+
+        height: 95px;
+
+      }
+    }
+
+    @media (min-width: 540px) {
+      .heading {
+        align-items: flex-end;
+
+        height: 95px;
+        padding-top: 20px;
+
+      }
+    }
+
+    /* // Medium devices (tablets, 768px and up) */
+    @media (min-width: 768px) {
+      .heading {
+        /* align-items: flex-end; */
+
+        height: 95px;
+        padding-top: 1.5%;
+
+      }
+    }
+
+    @media (min-width: 1080px) {
+      .heading {
+        /* align-items: flex-end; */
+
+        height: 76px;
+        padding-top: 0%;
+
+      }
+    }
+  </style>
+
+</head>
+
+<body>
+  <!-- Login option -->
+  <div class="container-fluid heading bg-light">
+    <form method="POST" action="./controler/loginCheck.php">
+      <div class="right login-f login-form">
+        <div class="form-group left">
+          <input type="tel" class="form-control form-control-sm" name="number" id="inputNumber"
+            placeholder="Enter Phone number" required>
+        </div>
+        <div class="form-group left">
+          <input type="password" class="form-control form-control-sm" name="password" id="inputPassword1"
+            placeholder="Password" required>
+        </div>
+        <div class="login-btn left" align="center">
+          <button type="submit" class="btn btn-sm btn-success" name="login">Log In</button>
+        </div>
+      </div>
+    </form>
+  </div>
+  <div class="container-fluid content bg-light">
+
+    <h4 class="welcome" align="center">Welcome to</h4>
+    <h2 class="wel-note" align="center">Moshal Blood Bank</h2>
+
+
+    <!-- joining option -->
+    <div class="sinup-btn" align="center">
+
+      <a href="./controler/lastactivity.php" class="btn btn-lg btn-primary" role="button" aria-pressed="true">Join
+        Us</a>
+    </div>
+    <!-- Search information -->
+
+    <div class="search left">
+      <h4>Search for Blood Donner:</h4>
+      <h4>রক্তদাতার সন্ধান করুন:</h4>
+
+      <div class="search-info">
+        <!-- Select option for Blood grp -->
+        <div class="form-group left">
+          <select class="form-control" id="bloodgrp">
+            <option value="none">Select Blood Group</option>
+
+            <option value="A+">A+</option>
+            <option value="A-">A-</option>
+            <option value="AB+">AB+</option>
+            <option value="AB-">AB-</option>
+            <option value="B+">B+</option>
+            <option value="B-">B-</option>
+            <option value="O+">O+</option>
+            <option value="O-">O-</option>
+          </select>
+        </div>
+        <!-- Select option for District -->
+        <div class="form-group left">
+
+          <input class="form-control" list="distric-option" name="district" id="distric" placeholder="Select District"
+            onkeyup="district();">
+          <datalist id="distric-option">
+            <option value="Dhaka">
+            <option value="Faridpur">
+            <option value="Gazipur">
+            <option value="Gopalganj">
+            <option value="Kishoreganj">
+            <option value="Madaripur">
+            <option value="Manikganj">
+            <option value="Munshiganj">
+            <option value="Naryanganj">
+            <option value="Narsingdi">
+            <option value="Rajbari">
+            <option value="Shariatpur">
+            <option value="Tangail">
+            <option value="Barguna">
+            <option value="Barisal">
+            <option value="Bhola">
+            <option value="Jhalokati">
+            <option value="Patuakhali">
+            <option value="Pirojpur">
+            <option value="Bandarban">
+            <option value="Brahmanbaria">
+            <option value="Chandpur">
+            <option value="Chittagong">
+            <option value="Comilla">
+            <option value="Cox's Bazar">
+            <option value="Feni">
+            <option value="Khagrachhari">
+            <option value="Lakshmipur">
+            <option value="Noakhali">
+            <option value="Rangamati">
+            <option value="Bagerhat">
+            <option value="Chuadanga">
+            <option value="Jessore">
+            <option value="Jhenaidah">
+            <option value="Khulna">
+            <option value="Kushtia">
+            <option value="Magura">
+            <option value="Meherpur">
+            <option value="Narail">
+            <option value="Satkhira">
+            <option value="Bogra">
+            <option value="Joypurhat">
+            <option value="Naogaon">
+            <option value="Natore">
+            <option value="Nawabganj">
+            <option value="Pabna">
+            <option value="Rajshahi">
+            <option value="Sirajganj">
+            <option value="Dinajpur">
+            <option value="Gaibandha">
+            <option value="Kurigram">
+            <option value="Lalmanirhat">
+            <option value="Nilphamari">
+            <option value="Panchagarh">
+            <option value="Rangpur">
+            <option value="Thakurgaon">
+            <option value="Habiganj">
+            <option value="Moulvibazar">
+            <option value="Sunamganj">
+            <option value="Sylhet">
+            <option value="Jamalpur">
+            <option value="Mymensingh">
+            <option value="Netrakona">
+            <option value="Sherpur">
+          </datalist>
+        </div>
+        <!-- Select option for Thana -->
+        <div class="form-group left">
+          <input class="form-control" list="Thana-option" name="Thana" id="Thana" placeholder="Select Thana">
+          <datalist id="Thana-option">
+
+          </datalist>
+        </div>
+        <!-- Select option for union -->
+        <div class="form-group left">
+          <input type="text" class="form-control" name="union" id="union" placeholder="Union">
+        </div>
+        <!-- Select option for Village -->
+        <div class="form-group left">
+          <input type="text" class="form-control" name="village" id="village" placeholder="Village">
+        </div>
+        <div class="login-btn left" align="center">
+          <button type="submit" class="btn btn-info" id="search">Search</button>
+        </div>
+
+      </div>
+
+    </div>
+    <!-- here goes table of search result -->
+    <div class="loader" align="center">
+      <img src="./assets/giphy.gif" alt="" srcset="" style="width: 50px;height: 50px;" class="responsive">
+    </div>
+    <div id="searchResult" align="center" class="container table-responsive">
+
+    </div>
+
+
+
+
+  </div>
+
+
+
+  <!-- JavaScript -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.js"></script>
+  <script>
+    function district() {
+      const districtName = document.getElementById('distric').value;
+      const xhttp = new XMLHttpRequest();
+      xhttp.open('POST', './controler/thanaOption.php', true);
+      xhttp.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+      xhttp.send('districtName=' + districtName);
+
+      xhttp.onreadystatechange = function () {
+        if (this.readyState == 4 && this.status == 200) {
+          //alert(this.responseText);
+          document.getElementById('Thana-option').innerHTML = this.responseText;
+        }
+      }
+    }
+
+    //for searching donner info
+
+    $(document).ready(function () {
+      $("#search").on("click", function () {
+        const district = document.getElementById('distric').value;
+        const bloodgrp = document.getElementById('bloodgrp').value;
+        const thana = document.getElementById('Thana').value;
+        const union = document.getElementById('union').value;
+        const village = document.getElementById('village').value;
+
+        $.ajax({
+          url: "./controler/donnerSearch.php",
+          type: "POST",
+          data: { district: district, bloodgrp: bloodgrp, thana: thana, union: union, village: village },
+          beforeSend: function () {
+            $('.loader').show();
+          },
+          success: function (data) {
+            $("#searchResult").html(data);
+            $('.loader').hide();
+          }
+
+        });
+
+      });
+    });
+
+
+
+
+  </script>
+</body>
+
+</html>
